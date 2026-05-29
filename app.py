@@ -6,7 +6,6 @@ from reportlab.pdfgen import canvas
 from reportlab.graphics.barcodes import code128
 
 def draw_table_label(buffer, item_name, barcode, qty, expiry_date):
-    # قەبارەی لاپەڕەی لێبڵ
     c = canvas.Canvas(buffer, pagesize=(450, 320))
     c.setLineWidth(1.5)
     c.rect(10, 10, 430, 300)
@@ -25,7 +24,7 @@ def draw_table_label(buffer, item_name, barcode, qty, expiry_date):
     # ١. ناوی بابەت (Item)
     c.setFont("Helvetica-Bold", 16)
     c.drawString(20, 285, "Item")
-    c.setFont("Times-Bold", 12) # فۆنتی ستاندارد بۆ عەرەبی و کوردی
+    c.setFont("Times-Bold", 12)
     c.drawRightString(430, 285, f"{item_name}")
     
     # ٢. بارکۆد (Barc.)
@@ -73,7 +72,7 @@ def draw_table_label(buffer, item_name, barcode, qty, expiry_date):
     c.setFont("Helvetica-Bold", 36)
     c.drawRightString(430, 67, f"{expiry_date}")
     
-    # ٦. کاتی وەرگرتن (DATA OF RECEIVING)
+    # ٦. کاتی وەرگرتن
     c.setFont("Helvetica-Bold", 10)
     c.drawString(20, 25, "DATA OF RECEIVING")
     now_str = datetime.now().strftime("%d-%m-%Y    %I:%M %p")
@@ -83,7 +82,6 @@ def draw_table_label(buffer, item_name, barcode, qty, expiry_date):
     c.showPage()
     c.save()
 
-# شاشەی ماڵپەڕەکە
 st.set_page_config(page_title="سیستەمی مەخزەن", layout="centered")
 if 'db' not in st.session_state:
     st.session_state.db = None
